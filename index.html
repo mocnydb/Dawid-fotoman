@@ -1,254 +1,280 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fotoman - Portfolio</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            margin: 0;
-            font-family: "Georgia", serif;
-            background-color: #000;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fotoman - Portfolio</title>
+<style>
+    /* Globalne style */
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: "Georgia", serif; background-color: #000; color: white; }
 
-        .box {
-            width: 102%;
-            height: 90px;
-            border: 1px solid black;
-            margin-left: -20px;
-            margin-top: -10px;
-            background-color: white;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        .menu-link {
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        .menu-link:hover {
-            color: #ffcc00;
-        }
+    /* Nagłówek i menu */
+    .box {
+        width: 100%;
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
 
-        .box2 {
-            width: 102%;
-            height: 500px;
-            margin-left: -20px;
-            background-image: url(tło2.jpg);
-            background-size: cover;
-        }
-        .box3 {
-            width: 102%;
-            height: auto;
-            margin-left: -20px;
-            padding-bottom: 100px;
-            background-image: url(tło2.jpg);
-            background-size: cover;
-        }
+    .box p, .box a {
+        margin: 0;
+        cursor: pointer;
+        font-size: 1.5rem;
+        transition: color 0.3s;
+        color: black;
+        text-decoration: none;
+    }
 
-        .box4, .box5, .box6 {
-            width: 500px;
-            height: 520px;
-            background-image: url(box.jpg);
-            background-size: cover;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .box4:hover, .box5:hover, .box6:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255,255,255,0.4);
-        }
-        .box4 { margin-left: 125px; }
-        .box5 { margin-left: 725px; margin-top: -536px; }
-        .box6 { margin-left: 1325px; margin-top: -536px; }
+    .box p:hover, .box a:hover { color: #ffcc00; }
 
-        .about {
-            background-color: #111;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-        }
-        .about h1 {
-            font-size: 70px;
-            margin-bottom: 40px;
-        }
-        .about p {
-            font-size: 24px;
-            max-width: 900px;
-            margin: 0 auto 40px auto;
-            line-height: 1.6;
-        }
-        .about button {
-            background-color: #ffcc00;
-            color: black;
-            padding: 15px 50px;
-            font-size: 26px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .about button:hover {
-            background-color: #ffd633;
-            transform: scale(1.05);
-        }
+    /* Hero sekcja */
+    .box2 {
+        width: 100%;
+        height: 70vh;
+        background-image: url(tło2.jpg);
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
 
-        .opinie {
-            background-color: #222;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-        }
-        .opinie h1 {
-            font-size: 70px;
-            margin-bottom: 80px;
-        }
-        .opinie-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 50px;
-        }
-        .opinia {
-            background-color: #333;
-            width: 400px;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 15px rgba(255,255,255,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .opinia:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(255,255,255,0.2);
-        }
-        .stars {
-            color: gold;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        .opinia p {
-            font-size: 20px;
-            line-height: 1.5;
-        }
-        .client {
-            margin-top: 20px;
-            font-style: italic;
-            color: #ccc;
-        }
+    .box2 h1 { font-size: 6vw; margin: 0; color: white; }
+    .box2 p { font-size: 1.5rem; max-width: 800px; margin-top: 20px; color: white; }
 
-        .kontakt {
-            background-color: #111;
-            color: white;
-            padding: 100px 20px;
-            text-align: center;
-        }
-        .kontakt h1 {
-            font-size: 70px;
-            margin-bottom: 50px;
-        }
-        .kontakt-info {
-            font-size: 24px;
-            margin-bottom: 50px;
-            line-height: 1.8;
-        }
-        .kontakt-info p {
-            margin: 15px 0;
-            transition: color 0.3s;
-        }
-        .kontakt-info p:hover {
-            color: #ffcc00;
-        }
+    /* Portfolio */
+    #portfolio {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    #portfolio h1 { font-size: 6vw; margin-bottom: 40px; }
+    #portfolio img {
+        max-width: 90%;
+        height: auto;
+        margin: 20px;
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+    #portfolio img:hover { transform: scale(1.05); }
 
-        footer {
-            background-color: #000;
-            color: #777;
-            text-align: center;
-            padding: 30px;
-            font-size: 18px;
-        }
-    </style>
+    /* Pakiety */
+    #pakiety {
+        background-image: url(tło2.jpg);
+        background-size: cover;
+        padding: 50px 0;
+    }
+    #pakiety h1 { text-align: center; font-size: 6vw; margin-bottom: 50px; color: floralwhite; }
+
+    .pakiety-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        padding: 0 20px;
+    }
+
+    .pakiet {
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+        width: 300px;
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pakiet:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
+    .pakiet-nazwa {
+        font-size: 2.5vw;
+        margin-bottom: 20px;
+    }
+
+    .pakiet.złoty .pakiet-nazwa { color: gold; }
+    .pakiet.srebrny .pakiet-nazwa { color: silver; }
+    .pakiet.podstawowy .pakiet-nazwa { color: lightblue; }
+
+    .pakiet ul { list-style: none; padding-left: 0; font-size: 1.1rem; line-height: 1.6; text-align: left; }
+    .pakiet ul li { margin-bottom: 8px; }
+
+    /* O mnie */
+    .about {
+        background-color: #111;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    .about h1 { font-size: 6vw; margin-bottom: 40px; }
+    .about p { font-size: 1.2rem; max-width: 900px; margin: 0 auto 40px auto; line-height: 1.6; }
+    .about button {
+        background-color: #ffcc00;
+        color: black;
+        padding: 15px 50px;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .about button:hover {
+        background-color: #ffd633;
+        transform: scale(1.05);
+    }
+
+    /* Opinie */
+    .opinie {
+        background-color: #222;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    .opinie h1 { font-size: 6vw; margin-bottom: 80px; }
+    .opinie-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 50px;
+    }
+    .opinia {
+        background-color: #333;
+        width: 300px;
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .opinia:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255,255,255,0.2);
+    }
+    .stars { color: gold; font-size: 1.5rem; margin-bottom: 20px; }
+    .opinia p { font-size: 1.1rem; line-height: 1.5; }
+    .client { margin-top: 20px; font-style: italic; color: #ccc; }
+
+    /* Kontakt */
+    .kontakt {
+        background-color: #111;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    .kontakt h1 { font-size: 6vw; margin-bottom: 50px; }
+    .kontakt-info { font-size: 1.2rem; line-height: 1.8; margin-bottom: 50px; }
+    .kontakt-info p { margin: 15px 0; transition: color 0.3s; }
+    .kontakt-info p:hover { color: #ffcc00; }
+
+    /* Footer */
+    footer {
+        background-color: #000;
+        color: #777;
+        text-align: center;
+        padding: 30px;
+        font-size: 1rem;
+    }
+
+    /* Responsywność */
+    @media (max-width: 768px) {
+        .pakiet { width: 90%; }
+        .pakiet-nazwa { font-size: 6vw; }
+        .box2 h1 { font-size: 10vw; }
+        .box2 p { font-size: 1.2rem; }
+        .about h1 { font-size: 10vw; }
+        .opinie h1 { font-size: 10vw; }
+        .kontakt h1 { font-size: 10vw; }
+        .box p, .box a { font-size: 1rem; }
+    }
+</style>
 </head>
 <body>
 
+    <!-- Nagłówek -->
     <div class="box">
-        <p style="margin-top:30px; margin-left: 150px; font-size:30px;">📷 Foto Dawid</p>
-        <p class="menu-link" onclick="scrollToSection('portfolio')" style="margin-top:-64px; margin-left: 500px; font-size:30px;">Portfolio</p>
-        <p class="menu-link" onclick="scrollToSection('pakiety')" style="margin-top:-64px; margin-left: 800px; font-size:30px;">Usługi</p>
-        <p class="menu-link" onclick="scrollToSection('about')" style="margin-top:-64px; margin-left: 1100px; font-size:30px;">O mnie</p>
-        <p class="menu-link" onclick="scrollToSection('opinie')" style="margin-top:-64px; margin-left: 1400px; font-size:30px;">Opinie</p>
-        <p class="menu-link" onclick="scrollToSection('kontakt')" style="margin-top:-64px; margin-left: 1700px; font-size:30px;">Kontakt</p>
+        <p>📷 Foto Dawid</p>
+        <p onclick="scrollToSection('portfolio')">Portfolio</p>
+        <p onclick="scrollToSection('pakiety')">Usługi</p>
+        <p onclick="scrollToSection('about')">O mnie</p>
+        <p onclick="scrollToSection('opinie')">Opinie</p>
+        <p onclick="scrollToSection('kontakt')">Kontakt</p>
     </div>
 
+    <!-- Hero -->
     <div class="box2">
-        <img src="miasto.png" style="padding: 50px;">
-        <p style="color: white; margin-top: -400px; margin-left: 900px; font-size: 100px;"><b>Sztuka fotografowania</b></p>
-        <p style="color: white; margin-top: -50px; margin-left: 900px; font-size: 30px; max-width: 800px;">
-            Fotografia to zatrzymanie chwili, która już nigdy się nie powtórzy.
-        </p>
+        <h1>Sztuka fotografowania</h1>
+        <p>Fotografia to zatrzymanie chwili, która już nigdy się nie powtórzy.</p>
     </div>
 
+    <!-- Portfolio -->
     <div id="portfolio">
-        <h1 style="text-align:center; font-size: 70px; margin-top: 100px; color: white;">Portfolio</h1>
-        <div style="text-align:center;">
-            <img src="miasto.png" style="margin:20px;">
-            <img src="miasto2.png" style="margin:20px;">
-            <img src="miasto3.png" style="margin:20px;">
-            <img src="miasto4.png" style="margin:20px;">
-        </div>
+        <h1>Portfolio</h1>
+        <img src="miasto.png" alt="">
+        <img src="miasto2.png" alt="">
+        <img src="miasto3.png" alt="">
+        <img src="miasto4.png" alt="">
     </div>
-    <div class="box3" id="pakiety">
-        <h1 style="text-align:center; font-size: 120px; color:floralwhite; padding-top:50px;">Pakiety fotograficzne</h1>
 
-        <div class="box4">
-            <p style="color:gold; font-size: 50px; text-align: center;">Złoty</p>
-            <ul style="list-style:none; padding-left:40px; font-size:22px; color:white; line-height:1.8;">
-                <li>📸 25 zdjęć w najwyższej jakości</li>
-                <li>📖 Elegancki album fotograficzny</li>
-                <li>📀 Pendrive z pełną galerią</li>
-                <li>💡 Możliwość sesji w dwóch lokalizacjach</li>
-                <li>🎨 Profesjonalny retusz premium</li>
-                <li>🕒 Czas realizacji: do 7 dni</li>
-                <li>💰 Cena: 699 zł</li>
-            </ul>
-        </div>
-    
-        <div class="box5">
-            <p style="color:silver;font-size: 50px; text-align: center;">Srebrny</p>
-            <ul style="list-style:none; padding-left:40px; font-size:22px; color:white; line-height:1.8;">
-                <li>📸 10 profesjonalnych zdjęć</li>
-                <li>🖼️ 3 odbitki w formacie A4</li>
-                <li>✨ Pełna obróbka i korekta barw</li>
-                <li>📀 Zdjęcia przekazywane na pendrive</li>
-                <li>🕒 Czas realizacji: do 5 dni</li>
-                <li>💰 Cena: 399 zł</li>
-            </ul>
-        </div>
-    
-        <div class="box6">
-            <p style="color:lightblue;font-size: 50px; text-align: center;">Podstawowy</p>
-            <ul style="list-style:none; padding-left:40px; font-size:22px; color:white; line-height:1.8;">
-                <li>📸 3 profesjonalne zdjęcia</li>
-                <li>💾 Pliki w wersji elektronicznej</li>
-                <li>✨ Obróbka graficzna (retusz, korekcja kolorów)</li>
-                <li>🕒 Czas realizacji: do 3 dni</li>
-                <li>📍 Sesja plenerowa lub studyjna</li>
-                <li>💰 Cena: 199 zł</li>
-            </ul>
+    <!-- Pakiety -->
+    <div id="pakiety">
+        <h1>Pakiety fotograficzne</h1>
+        <div class="pakiety-container">
+            <div class="pakiet złoty">
+                <p class="pakiet-nazwa">Złoty</p>
+                <ul>
+                    <li>📸 25 zdjęć w najwyższej jakości</li>
+                    <li>📖 Elegancki album fotograficzny</li>
+                    <li>📀 Pendrive z pełną galerią</li>
+                    <li>💡 Możliwość sesji w dwóch lokalizacjach</li>
+                    <li>🎨 Profesjonalny retusz premium</li>
+                    <li>🕒 Czas realizacji: do 7 dni</li>
+                    <li>💰 Cena: 699 zł</li>
+                </ul>
+            </div>
+            <div class="pakiet srebrny">
+                <p class="pakiet-nazwa">Srebrny</p>
+                <ul>
+                    <li>📸 10 profesjonalnych zdjęć</li>
+                    <li>🖼️ 3 odbitki w formacie A4</li>
+                    <li>✨ Pełna obróbka i korekta barw</li>
+                    <li>📀 Zdjęcia przekazywane na pendrive</li>
+                    <li>🕒 Czas realizacji: do 5 dni</li>
+                    <li>💰 Cena: 399 zł</li>
+                </ul>
+            </div>
+            <div class="pakiet podstawowy">
+                <p class="pakiet-nazwa">Podstawowy</p>
+                <ul>
+                    <li>📸 3 profesjonalne zdjęcia</li>
+                    <li>💾 Pliki w wersji elektronicznej</li>
+                    <li>✨ Obróbka graficzna (retusz, korekcja kolorów)</li>
+                    <li>🕒 Czas realizacji: do 3 dni</li>
+                    <li>📍 Sesja plenerowa lub studyjna</li>
+                    <li>💰 Cena: 199 zł</li>
+                </ul>
+            </div>
         </div>
     </div>
-    
+
+    <!-- O mnie -->
     <div class="about" id="about">
         <h1>O mnie</h1>
         <p>
-            Nazywam się <b>Dawid</b> — fotografia to moja pasja i sposób na uchwycenie emocji,
+            Nazywam się <b>Dawdi</b> — fotografia to moja pasja i sposób na uchwycenie emocji,
             światła i chwil, które szybko przemijają. Każda sesja to dla mnie nowa historia do opowiedzenia.
         </p>
         <button>Zarezerwuj sesję 📸</button>
     </div>
 
+    <!-- Opinie -->
     <div class="opinie" id="opinie">
         <h1>Opinie klientów</h1>
         <div class="opinie-container">
@@ -265,7 +291,7 @@
         </div>
     </div>
 
-    <!-- 📩 Sekcja Kontakt -->
+    <!-- Kontakt -->
     <div class="kontakt" id="kontakt">
         <h1>Skontaktuj się ze mną</h1>
         <div class="kontakt-info">
@@ -275,10 +301,10 @@
         </div>
     </div>
 
-    <footer>
-        © 2025 Fotoman | Wszystkie prawa zastrzeżone
-    </footer>
+    <!-- Footer -->
+    <footer>© 2025 Fotoman | Wszystkie prawa zastrzeżone</footer>
 
+    <!-- JS scroll -->
     <script>
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: "smooth" });
@@ -286,6 +312,3 @@
     </script>
 </body>
 </html>
-
-
-
